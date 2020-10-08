@@ -26,6 +26,11 @@ public class ClientGui extends JFrame implements ActionListener, Thread.Uncaught
 
     private final JList<String> userList = new JList<>();
 
+/*Thread readerThread = new Thread( new IncomingReader());
+    readerThread.star();
+
+ */
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -59,13 +64,64 @@ public class ClientGui extends JFrame implements ActionListener, Thread.Uncaught
         panelBottom.add(tfMessage, BorderLayout.CENTER);
         panelBottom.add(btnSend, BorderLayout.EAST);
 
+       /* Thread readerThread = new Thread( new IncomingReader());
+    readerThread.start();   Новый поток со вложенным класом , чтение данных с сервера и вывод
+    сообщений в прокручиваемую текстовую область
+
+
+        */
+
+
         add(scrollLog, BorderLayout.CENTER);
         add(scrollUser, BorderLayout.EAST);
         add(panelTop, BorderLayout.NORTH);
         add(panelBottom, BorderLayout.SOUTH);
         setVisible(true);
     }
+    /* Не понимаю момента , нам ведь нужно использовать сокет где-то , чтобы получать и отдавать
+        потоки , и чтобы сообщения от сервера получать тоже
+        Чтобы отправлять сообщения на сервер  и получать  :
+        private void setUpNet () {
+        try {
+        sock = new Socket (" на сколько я понимаю сюда надо вставить  ID компа ", 8000);
+        InputStreamReader stream = new InputStreamReader( sock.getInputStream());
+        reader = new BufferReader (streamReader);
+        writer = new PrintWriter ( sock.getOutputStream());
+        }
+        catch (IOExeption ex){
+        ex.printStackTrace();
+        }
+        Вот когда пользователь нажимает кнопку Send   , то сообщение отправляется на сервер
+        }
+        public class SendButtonL implements ActionListener{
+        public void action( ActionEvent ev){
+        try{
+        writer.println(outgoing.getText()):
+        writer.flush();
+        }
+        catch(Exeption ex) {
+        ex.printStackTrace();
+        }
+        outgoing.setText("");
+        outgoing.requestFocus ();
+        }
+        }
+        выше я сделала новый поток и там вложенный класс
+        public class IncomingReader implements Runnable {
+        public void run ()
+        {
+        String massage ;
+        try{
+        while ( ( massage = reader.readLine() ) != null) {
+        System.out.println( " " + massage);
+        incoming.appened(massage + "\n");
+        }
+        }
+        catch (Exeption ex){ ex.printStackTrace();}
+        }
+        }
 
+         */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
@@ -87,4 +143,5 @@ public class ClientGui extends JFrame implements ActionListener, Thread.Uncaught
         JOptionPane.showMessageDialog(this, msg, "Exception", JOptionPane.ERROR_MESSAGE);
         System.exit(1);
     }
+
 }

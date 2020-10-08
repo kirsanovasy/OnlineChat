@@ -1,7 +1,7 @@
 package ru.geekbrains.OnlineChat;
 
 
-import javax.swing.*;
+    import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
         private static final int HEIGHT = 100;
 
         private final ChatServer chatServer = new ChatServer();
+        /* почему то у меня ChatServer  красным горит , не понимаю в чем проблема ,
+        если я скопипастила ваш код
+         */
+
         private final JButton btnStart = new JButton("Start");
         private final JButton btnStop = new JButton("Stop");
 
